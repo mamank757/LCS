@@ -168,9 +168,25 @@
 
         <table class="identitas">
             <tr>
-                <td class="label-id">PERIODE</td><td class="titik-id">:</td>
-                <td><input type="text" id="id_periode" placeholder="BULAN TAHUN" oninput="simpanTeks('id_periode')"></td>
-            </tr>
+    <td class="label-id">PERIODE</td><td class="titik-id">:</td>
+    <td>
+        <select id="id_periode" class="input-tgl" style="text-align: left; width: 100%; border: none; font-weight: normal;" onchange="simpanTeks('id_periode')">
+            <option value="">PILIH BULAN</option>
+            <option value="JANUARI 2026">JANUARI 2026</option>
+            <option value="FEBRUARI 2026">FEBRUARI 2026</option>
+            <option value="MARET 2026">MARET 2026</option>
+            <option value="APRIL 2026">APRIL 2026</option>
+            <option value="MEI 2026">MEI 2026</option>
+            <option value="JUNI 2026">JUNI 2026</option>
+            <option value="JULI 2026">JULI 2026</option>
+            <option value="AGUSTUS 2026">AGUSTUS 2026</option>
+            <option value="SEPTEMBER 2026">SEPTEMBER 2026</option>
+            <option value="OKTOBER 2026">OKTOBER 2026</option>
+            <option value="NOVEMBER 2026">NOVEMBER 2026</option>
+            <option value="DESEMBER 2026">DESEMBER 2026</option>
+        </select>
+    </td>
+</tr>
             <tr>
                 <td class="label-id">NAMA PENYULUH</td><td class="titik-id">:</td>
                 <td><input type="text" id="id_nama" placeholder="NAMA LENGKAP" oninput="formatNama(this); simpanTeks('id_nama')"></td>
@@ -350,6 +366,7 @@
     </script>
 </body>
 </html>
+
 
 
 
