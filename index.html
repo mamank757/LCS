@@ -23,7 +23,7 @@
         .style-nama { font-weight: normal; }
         
         table.tabel-data { width: 100%; border-collapse: collapse; table-layout: fixed; border: 2px solid black; }
-        table.tabel-data th { background-color: #666666; color: white; padding: 10px 5px; border: 1px solid black; font-weight: bold; text-align: center; vertical-align: middle; text-transform: uppercase; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        table.tabel-data th { background-color: #86bfa7; color: white; padding: 10px 5px; border: 1px solid black; font-weight: bold; text-align: center; vertical-align: middle; text-transform: uppercase; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         table.tabel-data td { border: 1px solid black; padding: 0; vertical-align: middle; }
         
         .col-no { width: 110px; }
@@ -45,7 +45,7 @@
         .toolbar { padding: max(10px, env(safe-area-inset-top)) 10px 10px 10px; position: fixed; top: 20px; left: 20px; display: flex; flex-direction: column; gap: 5px; z-index: 9999; }
         button, .btn-link { padding: 12px 20px; cursor: pointer; border: none; border-radius: 8px; color: white; font-weight: bold; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); text-decoration: none; display: inline-flex; align-items: center; font-size: 14px; }
         
-        .btn-print { background: #32CD32; }
+        .btn-print { background: #008000; }
         .btn-reset { background: #FF0000; }
         .btn-lcs { background: #007bff; }
 
@@ -206,9 +206,9 @@
                 <td><input type="text" id="id_nip" placeholder="Contoh : 199009202020121001" maxlength="21" oninput="formatNIP(this); simpanTeks('id_nip')"></td>
             </tr>
             <tr>
-                <td class="label-id">WILAYAH BINAAN/WKPP</td>
+                <td class="label-id">WILBIN/WKPP</td>
                 <td class="titik-id">:</td>
-                <td><input type="text" id="id_wilayah" placeholder="Contoh : Desa ... Kec. ... Kab. ..." oninput="formatAlamat(this); simpanTeks('id_wilayah')"></td>
+                <td><input type="text" id="id_wilayah" placeholder="Contoh : DESA MANURUNG" oninput="formatAlamat(this); simpanTeks('id_wilayah')"></td>
             </tr>
         </table>
 
@@ -221,7 +221,7 @@
                 </tr>
                 <tr>
                     <th>Like</th>
-                    <th>Comen</th>
+                    <th>Comment</th>
                     <th>Share</th>
                 </tr>
             </thead>
@@ -305,9 +305,9 @@
                 </td>
                 <td class="td-foto">
                     <div class="foto-container">
-                        <span class="placeholder-text" id="txt_comen_${i}">Foto<br>Eviden Comen</span>
-                        <img src="" id="img_comen_${i}" class="img-preview">
-                        <input type="file" accept="image/*" class="file-input" onchange="prosesGambar(this, 'img_comen_${i}', 'txt_comen_${i}')">
+                        <span class="placeholder-text" id="txt_Comment_${i}">Foto<br>Eviden Comment</span>
+                        <img src="" id="img_Comment_${i}" class="img-preview">
+                        <input type="file" accept="image/*" class="file-input" onchange="prosesGambar(this, 'img_Comment_${i}', 'txt_Comment_${i}')">
                     </div>
                 </td>
                 <td class="td-foto">
@@ -370,7 +370,7 @@
                     localStorage.removeItem(`tgl_${jumlahBaris}`);
                     localStorage.removeItem(`judul_${jumlahBaris}`);
                     localStorage.removeItem(`img_like_${jumlahBaris}`);
-                    localStorage.removeItem(`img_comen_${jumlahBaris}`);
+                    localStorage.removeItem(`img_Comment_${jumlahBaris}`);
                     localStorage.removeItem(`img_share_${jumlahBaris}`);
                     
                     jumlahBaris--;
@@ -538,7 +538,7 @@
                     document.getElementById(`judul_${i}`).value = localStorage.getItem(`judul_${i}`);
                 }
                 
-                ['like', 'comen', 'share'].forEach(type => {
+                ['like', 'Comment', 'share'].forEach(type => {
                     const key = `img_${type}_${i}`;
                     if (localStorage.getItem(key)) {
                         document.getElementById(key).src = localStorage.getItem(key);
