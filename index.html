@@ -39,7 +39,7 @@
         /* Ukuran Kolom */
         .col-no { width: 40px; }
         .col-tgl { width: 90px; }
-        .col-judul { width: 140px; } /* Lebar dipersempit dari 180px ke 140px */
+        .col-judul { width: 140px; } 
         
         .td-center { text-align: center; font-weight: bold; }
         .td-height { height: 190px; }
@@ -54,10 +54,46 @@
         .file-input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 5; }
         .placeholder-text { font-size: 7pt; color: #888; text-align: center; }
 
-        /* Tombol di Cell */
-        .btn-clear-judul, .btn-paste-judul { position: absolute; bottom: 5px; background: #e74c3c; color: white; border: none; border-radius: 4px; width: 24px; height: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; }
-        .btn-clear-judul { right: 5px; }
-        .btn-paste-judul { right: 35px; background: #3498db; }
+        /* --- TOMBOL COPY PASTE & HAPUS --- */
+        .btn-clear-judul, .btn-paste-judul { 
+            position: absolute; 
+            bottom: 12px; 
+            border: none; 
+            border-radius: 50%; /* Bulat sempurna lebih modern */
+            width: 30px; 
+            height: 30px; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            z-index: 10; 
+            font-size: 14px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            color: white;
+        }
+
+        /* Tombol Paste (Biru) */
+        .btn-paste-judul { 
+            right: 48px; 
+            background: linear-gradient(135deg, #007bff, #0056b3); 
+        }
+        .btn-paste-judul:hover { 
+            transform: translateY(-2px) scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.4);
+        }
+        .btn-paste-judul:active { transform: scale(0.95); }
+
+        /* Tombol Hapus (Merah) */
+        .btn-clear-judul { 
+            right: 12px; 
+            background: linear-gradient(135deg, #ff4d4d, #c62828); 
+        }
+        .btn-clear-judul:hover { 
+            transform: translateY(-2px) scale(1.1);
+            box-shadow: 0 6px 12px rgba(255, 77, 77, 0.4);
+        }
+        .btn-clear-judul:active { transform: scale(0.95); }
 
         /* Toolbar & UI */
         .toolbar { position: fixed; top: 20px; left: 20px; display: flex; flex-direction: column; gap: 8px; z-index: 9999; }
@@ -80,7 +116,7 @@
         .btn-batal { background: #6c757d; flex: 1; }
         .btn-bersihkan { background: #e74c3c; flex: 1; }
 
-        /* --- HP VIEW MODE: TETAP A4 --- */
+        /* --- HP VIEW MODE --- */
         @media screen and (max-width: 768px) {
             body { background: #525659; overflow-x: auto; }
             .kertas-a4 { 
@@ -197,8 +233,8 @@
                 <td class="td-height">
                     <div class="judul-wrapper">
                         <textarea id="judul_${i}" class="input-judul" placeholder="Ketik judul konten..." oninput="simpanTeks('judul_${i}')"></textarea>
-                        <button class="btn-paste-judul" onclick="pasteKeJudul('judul_${i}')">P</button>
-                        <button class="btn-clear-judul" onclick="hapusJudul(${i})">X</button>
+                        <button class="btn-paste-judul" onclick="pasteKeJudul('judul_${i}')" title="Tempel Teks">&#128203;</button>
+                        <button class="btn-clear-judul" onclick="hapusJudul(${i})" title="Hapus Teks">&#128465;</button>
                     </div>
                 </td>
                 <td>
@@ -249,9 +285,13 @@
         }
 
         async function pasteKeJudul(id) {
-            const text = await navigator.clipboard.readText();
-            document.getElementById(id).value = text;
-            simpanTeks(id);
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById(id).value = text;
+                simpanTeks(id);
+            } catch (err) {
+                console.error("Gagal tempel:", err);
+            }
         }
 
         function hapusJudul(i) {
@@ -288,9 +328,12 @@
                     const key = `img_${type}_${i}`;
                     if (localStorage.getItem(key)) {
                         const img = document.getElementById(key);
-                        img.src = localStorage.getItem(key);
-                        img.style.display = 'block';
-                        document.getElementById(`txt_${type}_${i}`).style.display = 'none';
+                        if(img) {
+                            img.src = localStorage.getItem(key);
+                            img.style.display = 'block';
+                            const txt = document.getElementById(`txt_${type}_${i}`);
+                            if(txt) txt.style.display = 'none';
+                        }
                     }
                 });
             }
