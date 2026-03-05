@@ -11,7 +11,15 @@
     <style>
         @page { size: A4; margin: 0; }
         body { font-family: "Times New Roman", Times, serif; background: #525659; margin: 0; padding: 0; }
-        
+        /* Menghilangkan panah dropdown saat print */
+@media print {
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border: none;
+    }
+}
         /* Container Kertas Utama */
         .kertas-a4 { 
             width: 210mm; 
@@ -172,18 +180,18 @@
     <td>
         <select id="id_periode" class="input-tgl" style="text-align: left; width: 100%; border: none; font-weight: normal;" onchange="simpanTeks('id_periode')">
             <option value="">PILIH BULAN</option>
-            <option value="JANUARI 2026">JANUARI 2026</option>
-            <option value="FEBRUARI 2026">FEBRUARI 2026</option>
-            <option value="MARET 2026">MARET 2026</option>
-            <option value="APRIL 2026">APRIL 2026</option>
-            <option value="MEI 2026">MEI 2026</option>
-            <option value="JUNI 2026">JUNI 2026</option>
-            <option value="JULI 2026">JULI 2026</option>
-            <option value="AGUSTUS 2026">AGUSTUS 2026</option>
-            <option value="SEPTEMBER 2026">SEPTEMBER 2026</option>
-            <option value="OKTOBER 2026">OKTOBER 2026</option>
-            <option value="NOVEMBER 2026">NOVEMBER 2026</option>
-            <option value="DESEMBER 2026">DESEMBER 2026</option>
+            <option value="JANUARI 2026">JANUARI</option>
+            <option value="FEBRUARI 2026">FEBRUARI</option>
+            <option value="MARET 2026">MARET</option>
+            <option value="APRIL 2026">APRIL</option>
+            <option value="MEI 2026">MEI</option>
+            <option value="JUNI 2026">JUNI</option>
+            <option value="JULI 2026">JULI</option>
+            <option value="AGUSTUS 2026">AGUSTUS</option>
+            <option value="SEPTEMBER 2026">SEPTEMBER</option>
+            <option value="OKTOBER 2026">OKTOBER</option>
+            <option value="NOVEMBER 2026">NOVEMBER</option>
+            <option value="DESEMBER 2026">DESEMBER</option>
         </select>
     </td>
 </tr>
@@ -366,7 +374,6 @@
     </script>
 </body>
 </html>
-
 
 
 
