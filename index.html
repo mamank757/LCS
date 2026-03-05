@@ -1,185 +1,169 @@
 
-<!--DOCTYPE html-->
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, data-header-fixed='true'">
     <meta name="theme-color" content="#333" />
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>EVIDEN LCS DIGITAL</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
+        /* --- 1. DASAR & HALAMAN --- */
         @page { size: A4; margin: 0; }
         body { font-family: "Times New Roman", Times, serif; background: #525659; margin: 0; padding: 0; }
-        .kertas-a4 { width: 210mm; min-height: 297mm; padding: 15mm 20mm; margin: 20px auto; background: white; box-sizing: border-box; box-shadow: 0 0 15px rgba(0,0,0,0.5); }
-        .judul-laporan { text-align: center; font-weight: bold; font-size: 14pt; margin-bottom: 25px; text-transform: uppercase; line-height: 1.3; }
-        .catatan { display: none !important; }        
-        .identitas { width: 100% !important; border-collapse: collapse !important; margin-bottom: 20px; font-size: 11pt; table-layout: fixed; border: none !important; }
-        .identitas td { padding: 4px 0 !important; vertical-align: top; border: none !important; background: transparent !important; }
-        .label-id { width: 140px !important; font-weight: bold; }
-        .titik-id { width: 20px !important; text-align: center; font-weight: bold; }
-        .identitas input { width: 100% !important; border: none !important; background: transparent !important; outline: none;font-family: "Times New Roman", Times, serif; font-size: 11pt; color: black !important; padding: 0 !important; margin: 0 !important; box-sizing: border-box !important; }
-        .style-periode { font-weight: bold; text-transform: uppercase; }
-        .style-nama { font-weight: normal; }
         
-        table.tabel-data { width: 100%; border-collapse: collapse; table-layout: fixed; border: 2px solid black; }
-        table.tabel-data th { background-color: #86bfa7; color: black; padding: 10px 5px; border: 1px solid black; font-weight: bold; text-align: center; vertical-align: middle; text-transform: uppercase; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        table.tabel-data td { border: 1px solid black; padding: 0; vertical-align: middle; }
-        
-        .col-no { width: 110px; }
-        .col-judul { width: 180px; }
-        .td-no { text-align: center; height: 190px; vertical-align: middle; }
-        
-        .input-tgl { width: 100% !important; height: 100% !important; border: none !important; text-align: center !important; font-weight: normal !important; font-size: 10pt !important; background: transparent !important; outline: none !important; font-family: "Times New Roman", Times, serif; !important; color: #000 !important; padding: 0 !important; margin: 0 !important; line-height: normal !important; box-sizing: border-box !important; }
-        .judul-wrapper { display: flex !important; align-items: center !important; justify-content: flex-start !important; height: 190px !important; padding: 0 10px !important; box-sizing: border-box !important; margin: 0 !important; position: relative !important; }
-        textarea.input-judul { width: 100% !important; height: 90px !important; border: none !important; resize: none !important; font-family: "Times New Roman", Times, serif; !important; font-size: 10pt !important; background: transparent !important; outline: none !important; overflow: hidden !important; line-height: 1.3 !important; padding: 0 0 35px 0 !important; margin: 0 !important; box-sizing: border-box !important; }
-        
-        .btn-clear-judul { position: absolute; bottom: 10px; right: 10px; background: #e74c3c; color: white; border: none; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.2); z-index: 10; }
-        .btn-paste-judul { position: absolute; bottom: 10px; left: 10px; background: #3498db; color: white; border: none; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.2); z-index: 10; }
+        .kertas-a4 { 
+            width: 210mm; 
+            min-height: 297mm; 
+            padding: 15mm 20mm; 
+            margin: 20px auto; 
+            background: white; 
+            box-sizing: border-box; 
+            box-shadow: 0 0 15px rgba(0,0,0,0.5); 
+            position: relative;
+        }
 
-        .foto-container { border-radius: 4px; width: 100px; height: 180px; border: 1px dashed #ccc; margin: 5px auto; position: relative; background-color: #f4f4f4; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .judul-laporan { text-align: center; font-weight: bold; font-size: 14pt; margin-bottom: 25px; text-transform: uppercase; line-height: 1.3; }
+        
+        /* --- 2. IDENTITAS --- */
+        .identitas { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 11pt; table-layout: fixed; border: none; }
+        .identitas td { padding: 4px 0; vertical-align: top; border: none; background: transparent; }
+        .label-id { width: 140px; font-weight: bold; }
+        .titik-id { width: 20px; text-align: center; font-weight: bold; }
+        .identitas input { width: 100%; border: none; background: transparent; outline: none; font-family: inherit; font-size: 11pt; color: black; }
+        .style-periode { font-weight: bold; text-transform: uppercase; }
+
+        /* --- 3. TABEL DATA (DESKTOP) --- */
+        table.tabel-data { width: 100%; border-collapse: collapse; table-layout: fixed; border: 2px solid black; }
+        table.tabel-data th { 
+            background-color: #86bfa7; 
+            color: black; 
+            padding: 10px 5px; 
+            border: 1px solid black; 
+            font-weight: bold; 
+            text-align: center; 
+            vertical-align: middle; 
+            text-transform: uppercase;
+            font-size: 10pt;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        table.tabel-data td { border: 1px solid black; padding: 0; vertical-align: middle; }
+
+        /* Pengaturan Lebar Kolom */
+        .col-no { width: 40px; }
+        .col-tanggal { width: 100px; }
+        .col-judul { width: auto; }
+        .col-eviden { width: 95px; }
+
+        /* Isi Sel Tabel */
+        .td-no { text-align: center; height: 180px; font-weight: bold; font-size: 11pt; }
+        .input-tgl { width: 100%; border: none; text-align: center; font-family: inherit; font-size: 10pt; outline: none; background: transparent; height: 100%; }
+        
+        .judul-wrapper { position: relative; height: 180px; padding: 10px; box-sizing: border-box; display: flex; flex-direction: column; }
+        textarea.input-judul { 
+            width: 100%; 
+            height: 100%;
+            border: none; 
+            resize: none; 
+            font-family: inherit; 
+            font-size: 10pt; 
+            background: transparent; 
+            outline: none; 
+            line-height: 1.3; 
+            overflow: hidden;
+        }
+
+        /* Foto Eviden */
+        .foto-container { 
+            width: 85px; height: 160px; border: 1px dashed #ccc; 
+            margin: auto; position: relative; background: #f4f4f4; 
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
         .img-preview { width: 100%; height: 100%; object-fit: fill; display: none; }
         .file-input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 5; }
-        .placeholder-text { font-size: 8pt; color: #888; text-align: center; }
-        
-        .toolbar { padding: max(10px, env(safe-area-inset-top)) 10px 10px 10px; position: fixed; top: 20px; left: 20px; display: flex; flex-direction: column; gap: 5px; z-index: 9999; }
+        .placeholder-text { font-size: 7pt; color: #888; text-align: center; }
+
+        /* --- 4. NAVIGATION & UI --- */
+        .toolbar { padding: 10px; position: fixed; top: 20px; left: 20px; display: flex; flex-direction: column; gap: 8px; z-index: 9999; }
         button, .btn-link { padding: 12px 20px; cursor: pointer; border: none; border-radius: 8px; color: white; font-weight: bold; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); text-decoration: none; display: inline-flex; align-items: center; font-size: 14px; }
         
         .btn-print { background: #008000; }
         .btn-reset { background: #FF0000; }
         .btn-lcs { background: #007bff; }
-
+        
         .action-buttons { text-align: center; margin-top: 15px; display: flex; justify-content: center; gap: 10px; }
-        .btn-action { background: #00008B; padding: px 20px; font-size: 14px; }
+        .btn-action { background: #00008B; }
 
+        /* Paste & Clear Buttons (Floating) */
+        .btn-paste-judul { position: absolute; bottom: 8px; left: 8px; background: #3498db; color: white; border: none; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; }
+        .btn-clear-judul { position: absolute; bottom: 8px; right: 8px; background: #e74c3c; color: white; border: none; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; }
+
+        /* --- 5. MODAL --- */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 10000; align-items: center; justify-content: center; }
-        .modal-box { background: white; padding: 25px; border-radius: 10px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.5); max-width: 300px; width: 95%; }
-        .modal-box p { margin: 0 0 20px 0; font-size: 16px; font-weight: bold; color: #333; }
-        .modal-buttons { display: flex; gap: 10px; justify-content: center; }
-        .btn-batal { background: #6c757d; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; flex: 1; justify-content: center; display: flex; box-shadow: none; }
-        .btn-bersihkan { background: #e74c3c; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; flex: 1; justify-content: center; display: flex; box-shadow: none; }
-      
-      
-      @media screen and (max-width: 768px) {
-    .fother-sticky-bar {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: #ffffff;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
-        z-index: 9999;
-    }
+        .modal-box { background: white; padding: 25px; border-radius: 10px; text-align: center; max-width: 300px; width: 95%; }
+        .btn-batal { background: #6c757d; }
+        .btn-bersihkan { background: #e74c3c; }
 
-    .fother-content {
-        display: flex;
-        gap: 30px;
-        align-items: center;
-    }
+        /* --- 6. MOBILE RESPONSIVE --- */
+        @media screen and (max-width: 768px) {
+            body { background: #ddd; padding: 0; }
+            .toolbar { position: fixed; top: 0; left: 0; right: 0; background: #333; flex-direction: row; padding: 10px; margin: 0; border-radius: 0; }
+            .kertas-a4 { width: 97%; padding: 15px; margin: 60px auto 20px auto; box-shadow: none; }
+            .identitas td { display: block; width: 100%; }
+            .titik-id { display: none; }
+            
+            .tabel-data thead { display: none; }
+            .tabel-data, .tabel-data tbody, .tabel-data tr, .tabel-data td { display: block; width: 100%; border: none; }
+            .tabel-data tr { background: #f9f9f9; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 20px; padding: 10px; box-sizing: border-box; }
+            
+            .td-no { height: auto; background: #fff; border: 1px solid #ccc !important; border-radius: 8px; margin-bottom: 8px; padding: 5px !important; }
+            .td-judul { background: #fff; border: 1px solid #ccc !important; border-radius: 8px; margin-bottom: 8px; }
+            .judul-wrapper { height: 120px !important; }
+            
+            .td-foto { display: inline-block !important; width: 31% !important; margin: 0 1%; }
+            .foto-container { width: 100%; height: 140px; }
+        }
 
-    .fother-icon {
-        font-size: 24px;
-        text-decoration: none;
-        transition: transform 0.2s ease, color 0.2s ease;
-        color: #555555;
-        font-weight: 100;
-        -webkit-text-stroke: 0.1px #555555;
-    }
-
-    .icon-wag:active, .icon-wag:hover { color: #25D366; transform: scale(1.1); -webkit-text-stroke-color: #25D366; }
-    .icon-tiktok:active, .icon-tiktok:hover { color: #000000; transform: scale(1.1); -webkit-text-stroke-color: #000000; }
-    .icon-yt:active, .icon-yt:hover { color: #FF0000; transform: scale(1.1); -webkit-text-stroke-color: #FF0000; }
-    .icon-ig:active, .icon-ig:hover { color: #E4405F; transform: scale(1.1); -webkit-text-stroke-color: #E4405F; }
-    .icon-fb:active, .icon-fb:hover { color: #1877F2; transform: scale(1.1); -webkit-text-stroke-color: #1877F2; }
-
-    html, body { margin: 0; padding: 5px; background: #ddd; }
-    .kertas-a4 { width: 97%; padding: 15px; margin-bottom : 10px; box-shadow: none; box-sizing: border-box; }
-    .judul-laporan { font-size: 11pt; margin-top: 40px; }
-    .identitas td { display: block; width: 100%; }
-    .label-id { width: 100% !important; }
-    .titik-id { display: none !important; }
-    .identitas input { width: 100% !important; border-bottom: 1px solid #ccc !important;  margin-bottom: 10px !important; }
-    .catatan { display: block !important; font-size: 11px !important; font-style: italic !important; color:red; margin-bottom: 2px !important;}
-    .tabel-data thead { display: none !important; }
-    table.tabel-data, .tabel-data tbody, .tabel-data tr, .tabel-data td { display: block; width: 100%; border: none; }
-    .tabel-data tr { background: #f9f9f9; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 20px; padding: 15px; box-sizing: border-box; }
-    .td-no { height: auto; text-align: center; border: 1px solid #ccc !important; border-radius: 10px; background: white; padding: 10px !important; margin-bottom: 15px; box-sizing: border-box; }
-    .td-judul { border: 1px solid #ccc !important; border-radius: 10px; background: white; padding: 10px; margin-bottom: 15px; box-sizing: border-box; display: block; }
-    .judul-wrapper { height: auto !important; padding: 0 0 35px 0 !important; }
-    textarea.input-judul { height: 80px !important; width: 100% !important; border: none !important; background: transparent !important; padding: 0 !important; outline: none !important; resize: none !important; }
-    .td-foto { display: inline-block !important; width: 31% !important; vertical-align: top;border-radius: 3px; }
-    .foto-container { width: 95%; height: 140px; margin: 0 auto; background: white; }
-    
-    .toolbar { position: fixed; top: 0; left: 0; right: 0; background: #333; display: flex; flex-direction: row; padding: max(10px, env(safe-area-inset-top)) 10px 10px 10px; gap: 5px; box-sizing: border-box; z-index: 9999; margin: 0; border: none; }
-    button, .btn-link { flex: 1; margin: 0 !important; justify-content: center; padding: 10px 5px; font-size: 11px; box-sizing: border-box; width: auto; }
-    .action-buttons { margin-bottom: 30px; }
-}
-      
-      
-      
-      
-      
-
+        /* --- 7. PRINT OVERRIDE --- */
         @media print {
-            html, body { height: auto; overflow: visible; background: white !important; }
-            
-            header, nav, aside, footer, iframe, 
-            #header, .header, #header-wrapper, .header-outer, 
-            #navbar-iframe, .navbar, .nav-menu, 
-            #sidebar, .sidebar, #sidebar-wrapper, .sidebar-outer, 
-            #footer, .footer, #footer-wrapper, .footer-outer, 
-            .comments, .post-title, .breadcrumbs, .blog-pager, .date-header,
-            .toolbar, .action-buttons, .modal-overlay, .btn-clear-judul, .btn-paste-judul { 
-                display: none !important; 
-            }
-            
-            .main-outer, .main-inner, .post-body, .content-outer, .content-inner {
-                margin: 0 !important;
-                padding: 0 !important;
-                border: none !important;
-            }
-
-            .kertas-a4 { width: 210mm !important; min-height: 297mm !important; height: auto !important; padding: 10mm 20mm !important; margin: 0 !important; border: none !important; box-shadow: none !important; page-break-after: avoid !important; overflow: visible !important; }
-            .judul-laporan { width: 110% !important; margin: 0 -5% 15px -5% !important; line-height: 1.1 !important; font-size: 13pt !important; }
-            .identitas { margin-top: 40px; margin-bottom: 25px !important; }
-            
-            table.tabel-data { display: table !important; width: 100% !important; page-break-inside: auto; }
-            .tabel-data tr { display: table-row !important; page-break-inside: avoid; page-break-after: auto; }
+            body { background: white !important; }
+            .kertas-a4 { margin: 0 !important; padding: 10mm 15mm !important; width: 210mm !important; box-shadow: none !important; }
+            .toolbar, .action-buttons, .modal-overlay, .btn-clear-judul, .btn-paste-judul, .file-input, .placeholder-text { display: none !important; }
+            .tabel-data { display: table !important; border: 2px solid black !important; }
+            .tabel-data tr { display: table-row !important; page-break-inside: avoid; }
             .tabel-data td { display: table-cell !important; border: 1px solid black !important; }
-            .td-no, .judul-wrapper { height: 165px !important; padding: 0 10px !important; }
-            textarea.input-judul { padding: 0 !important; }
-            .foto-container { height: 170px !important; border: none !important; background: transparent !important; }
-            .placeholder-text { display: none !important; }
-            ::placeholder { color: transparent !important; }
+            .foto-container { background: transparent !important; border: 1px solid #eee !important; height: 170px !important; }
+            .img-preview { display: block !important; }
         }
     </style>
 </head>
+
 <body onload="muatDataLokal()">
 
     <div class="toolbar">
         <button class="btn-print" onclick="cetakPDFCustom()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" style="margin-right:6px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> SIMPAN
+            <i class="fas fa-save" style="margin-right:8px"></i> SIMPAN PDF
         </button>
         <button class="btn-reset" onclick="tampilkanPopup()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg> ATUR ULANG
+            <i class="fas fa-sync-alt" style="margin-right:8px"></i> ATUR ULANG
         </button>
-        <a class="btn-link btn-lcs" href="https://dev.epusluh.id/lcs/list">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line></svg> EPUSLUH
-       
-               </a>
+        <a class="btn-link btn-lcs" href="https://dev.epusluh.id/lcs/list" target="_blank">
+            <i class="fas fa-file-alt" style="margin-right:8px"></i> EPUSLUH
+        </a>
     </div>
 
     <div id="popup-reset" class="modal-overlay">
         <div class="modal-box">
-            <p>Mau Bersihkan Data ?</p>
-            <div class="modal-buttons">
-                <button class="btn-batal" onclick="tutupPopup()">Batal</button>
-                <button class="btn-bersihkan" onclick="konfirmasiReset()">Bersihkan</button>
+            <p>Bersihkan semua data laporan?</p>
+            <div class="modal-buttons" style="display:flex; gap:10px;">
+                <button class="btn-batal" onclick="tutupPopup()" style="flex:1">Batal</button>
+                <button class="btn-bersihkan" onclick="konfirmasiReset()" style="flex:1">Bersihkan</button>
             </div>
         </div>
     </div>
@@ -194,41 +178,68 @@
             <tr>
                 <td class="label-id">PERIODE</td>
                 <td class="titik-id">:</td>
-                <td><input type="text" id="id_periode" class="style-periode" placeholder="Rest Untuk Isi Otomatis" oninput="simpanTeks('id_periode')"></td>
+                <td><input type="text" id="id_periode" class="style-periode" placeholder="Contoh: JANUARI 2026" oninput="simpanTeks('id_periode')"></td>
             </tr>
             <tr>
                 <td class="label-id">NAMA PENYULUH</td>
                 <td class="titik-id">:</td>
-                <td><input type="text" id="id_nama" class="style-nama" placeholder="Contoh : ABDUL RAHMAN, SP" oninput="formatNama(this); simpanTeks('id_nama')"></td>
+                <td><input type="text" id="id_nama" placeholder="Masukkan Nama & Gelar" oninput="simpanTeks('id_nama')"></td>
             </tr>
             <tr>
                 <td class="label-id">NIP.</td>
                 <td class="titik-id">:</td>
-                <td><input type="text" id="id_nip" placeholder="Contoh : 199009202020121001" maxlength="21" oninput="formatNIP(this); simpanTeks('id_nip')"></td>
+                <td><input type="text" id="id_nip" placeholder="Masukkan NIP" maxlength="21" oninput="simpanTeks('id_nip')"></td>
             </tr>
             <tr>
                 <td class="label-id">WILBIN/WKPP</td>
                 <td class="titik-id">:</td>
-                <td><input type="text" id="id_wilayah" placeholder="Contoh : DESA MANURUNG" oninput="formatAlamat(this); simpanTeks('id_wilayah')"></td>
+                <td><input type="text" id="id_wilayah" placeholder="Nama Desa/Kecamatan" oninput="simpanTeks('id_wilayah')"></td>
             </tr>
         </table>
 
         <table class="tabel-data">
             <thead>
                 <tr>
-                    <th rowspan="2" class="col-no">TANGGAL</th>
-                    <th rowspan="2" class="col-judul">Judul Konten</th>
+                    <th rowspan="2" class="col-no">NO.</th>
+                    <th rowspan="2" class="col-tanggal">TANGGAL</th>
+                    <th rowspan="2" class="col-judul">JUDUL KONTEN</th>
                     <th colspan="3">EVIDEN</th>
                 </tr>
                 <tr>
-                    <th>Like</th>
-                    <th>Comment</th>
-                    <th>Share</th>
+                    <th class="col-eviden">Like</th>
+                    <th class="col-eviden">Comment</th>
+                    <th class="col-eviden">Share</th>
                 </tr>
             </thead>
-            <tbody id="table-body"></tbody>
+            <tbody id="table-body">
+                </tbody>
         </table>
 
+        <div class="action-buttons">
+            <button class="btn-action" onclick="tambahBaris()">
+                <i class="fas fa-plus"></i> Tambah Baris
+            </button>
+            <button class="btn-action" style="background:#8B0000" onclick="hapusBaris()">
+                <i class="fas fa-minus"></i> Hapus Baris
+            </button>
+        </div>
+    </div>
+
+    <div class="fother-sticky-bar">
+        <div class="fother-content">
+            <a class="fother-icon icon-wag" href="#"><i class="fab fa-whatsapp"></i></a>
+            <a class="fother-icon icon-tiktok" href="#"><i class="fab fa-tiktok"></i></a>
+            <a class="fother-icon icon-yt" href="#"><i class="fab fa-youtube"></i></a>
+            <a class="fother-icon icon-ig" href="#"><i class="fab fa-instagram"></i></a>
+            <a class="fother-icon icon-fb" href="#"><i class="fab fa-facebook-f"></i></a>
+        </div>
+    </div>
+
+    <script>
+        // Pastikan Anda memasukkan fungsi JavaScript (tambahBaris, simpanTeks, prosesGambar, dll) di sini
+    </script>
+</body>
+</html>
         <div class="action-buttons">
             <button class="btn-action" onclick="tambahBaris()">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px; vertical-align: text-bottom;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Tambah Baris
@@ -276,52 +287,57 @@
         let jumlahBaris = parseInt(localStorage.getItem('jumlahBaris')) || 3;
         let dataTerakhirDikirim = ""; 
 
-        function renderBarisHTML(i) {
-            const tr = document.createElement('tr');
-            tr.id = `baris_${i}`;
-            tr.innerHTML = `
-                <td class="td-no">
-                    <input type="text" id="tgl_${i}" class="input-tgl" oninput="sinkronisasiTanggal(this)">
-                </td>
-                <td class="td-judul">
-                    <div class="judul-wrapper">
-                        <textarea id="judul_${i}" class="input-judul" placeholder="Isi Judul Konten Buka Tombol LCS" oninput="simpanTeks('judul_${i}')"></textarea>
-                        
-                        <button type="button" class="btn-paste-judul" onclick="pasteKeJudul('judul_${i}')" title="Paste Teks">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
-                        </button>
-                        
-                        <button type="button" class="btn-clear-judul" onclick="document.getElementById('judul_${i}').value=''; simpanTeks('judul_${i}')" title="Hapus Teks">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                        </button>
-                        
-                    </div>
-                </td>
-                <td class="td-foto">
-                    <div class="foto-container">
-                        <span class="placeholder-text" id="txt_like_${i}">Foto<br>Evide Like</span>
-                        <img src="" id="img_like_${i}" class="img-preview">
-                        <input type="file" accept="image/*" class="file-input" onchange="prosesGambar(this, 'img_like_${i}', 'txt_like_${i}')">
-                    </div>
-                </td>
-                <td class="td-foto">
-                    <div class="foto-container">
-                        <span class="placeholder-text" id="txt_Comment_${i}">Foto<br>Eviden Comment</span>
-                        <img src="" id="img_Comment_${i}" class="img-preview">
-                        <input type="file" accept="image/*" class="file-input" onchange="prosesGambar(this, 'img_Comment_${i}', 'txt_Comment_${i}')">
-                    </div>
-                </td>
-                <td class="td-foto">
-                    <div class="foto-container">
-                        <span class="placeholder-text" id="txt_share_${i}">Foto<br>Eviden Share</span>
-                        <img src="" id="img_share_${i}" class="img-preview">
-                        <input type="file" accept="image/*" class="file-input" onchange="prosesGambar(this, 'img_share_${i}', 'txt_share_${i}')">
-                    </div>
-                </td>
-            `;
-            return tr;
-        }
+       function renderBarisHTML(i) {
+    const tr = document.createElement('tr');
+    tr.id = `baris_${i}`;
+    
+    // i + 1 agar nomor dimulai dari 1, bukan 0
+    const nomorUrut = i + 1; 
 
+    tr.innerHTML = `
+        <td class="td-no" style="text-align: center; vertical-align: middle;">
+            ${nomorUrut}
+        </td>
+        <td class="td-tgl">
+            <input type="text" id="tgl_${i}" class="input-tgl" placeholder="${tglDefault}" oninput="simpanTeks('tgl_${i}')">
+        </td>
+        <td class="td-judul">
+            <div class="judul-wrapper">
+                <textarea id="judul_${i}" class="input-judul" placeholder="Isi Judul Konten..." oninput="simpanTeks('judul_${i}')"></textarea>
+                <div class="action-buttons-mini">
+                    <button type="button" class="btn-paste-judul" onclick="pasteKeJudul('judul_${i}')" title="Paste">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                    </button>
+                    <button type="button" class="btn-clear-judul" onclick="hapusJudul(${i})" title="Hapus">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </td>
+        <td class="td-foto">
+            <div class="foto-container">
+                <span class="placeholder-text" id="txt_like_${i}">Like</span>
+                <img src="" id="img_like_${i}" class="img-preview">
+                <input type="file" accept="image/*" class="file-input" onchange="prosesGambar(this, 'img_like_${i}', 'txt_like_${i}')">
+            </div>
+        </td>
+        <td class="td-foto">
+            <div class="foto-container">
+                <span class="placeholder-text" id="txt_Comment_${i}">Comment</span>
+                <img src="" id="img_Comment_${i}" class="img-preview">
+                <input type="file" accept="image/*" class="file-input" onchange="prosesGambar(this, 'img_Comment_${i}', 'txt_Comment_${i}')">
+            </div>
+        </td>
+        <td class="td-foto">
+            <div class="foto-container">
+                <span class="placeholder-text" id="txt_share_${i}">Share</span>
+                <img src="" id="img_share_${i}" class="img-preview">
+                <input type="file" accept="image/*" class="file-input" onchange="prosesGambar(this, 'img_share_${i}', 'txt_share_${i}')">
+            </div>
+        </td>
+    `;
+    return tr;
+}
         for (let i = 1; i <= jumlahBaris; i++) {
             tbody.appendChild(renderBarisHTML(i));
         }
