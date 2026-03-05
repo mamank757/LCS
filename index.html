@@ -10,7 +10,7 @@
     <title>EVIDEN LCS DIGITAL</title>
     <style>
         @page { size: A4; margin: 0; }
-        body { font-family: Arial, sans-serif; background: #525659; margin: 0; padding: 0; }
+        body { font-family: "Times New Roman", Times, serif; background: #525659; margin: 0; padding: 0; }
         .kertas-a4 { width: 210mm; min-height: 297mm; padding: 15mm 20mm; margin: 20px auto; background: white; box-sizing: border-box; box-shadow: 0 0 15px rgba(0,0,0,0.5); }
         .judul-laporan { text-align: center; font-weight: bold; font-size: 14pt; margin-bottom: 25px; text-transform: uppercase; line-height: 1.3; }
         .catatan { display: none !important; }        
@@ -18,7 +18,7 @@
         .identitas td { padding: 4px 0 !important; vertical-align: top; border: none !important; background: transparent !important; }
         .label-id { width: 140px !important; font-weight: bold; }
         .titik-id { width: 20px !important; text-align: center; font-weight: bold; }
-        .identitas input { width: 100% !important; border: none !important; background: transparent !important; outline: none; font-family: Arial; font-size: 11pt; color: black !important; padding: 0 !important; margin: 0 !important; box-sizing: border-box !important; }
+        .identitas input { width: 100% !important; border: none !important; background: transparent !important; outline: none;font-family: "Times New Roman", Times, serif; font-size: 11pt; color: black !important; padding: 0 !important; margin: 0 !important; box-sizing: border-box !important; }
         .style-periode { font-weight: bold; text-transform: uppercase; }
         .style-nama { font-weight: normal; }
         
@@ -30,9 +30,9 @@
         .col-judul { width: 180px; }
         .td-no { text-align: center; height: 190px; vertical-align: middle; }
         
-        .input-tgl { width: 100% !important; height: 100% !important; border: none !important; text-align: center !important; font-weight: normal !important; font-size: 10pt !important; background: transparent !important; outline: none !important; font-family: Arial, sans-serif !important; color: #000 !important; padding: 0 !important; margin: 0 !important; line-height: normal !important; box-sizing: border-box !important; }
+        .input-tgl { width: 100% !important; height: 100% !important; border: none !important; text-align: center !important; font-weight: normal !important; font-size: 10pt !important; background: transparent !important; outline: none !important; font-family: "Times New Roman", Times, serif; !important; color: #000 !important; padding: 0 !important; margin: 0 !important; line-height: normal !important; box-sizing: border-box !important; }
         .judul-wrapper { display: flex !important; align-items: center !important; justify-content: flex-start !important; height: 190px !important; padding: 0 10px !important; box-sizing: border-box !important; margin: 0 !important; position: relative !important; }
-        textarea.input-judul { width: 100% !important; height: 90px !important; border: none !important; resize: none !important; font-family: Arial, sans-serif !important; font-size: 10pt !important; background: transparent !important; outline: none !important; overflow: hidden !important; line-height: 1.3 !important; padding: 0 0 35px 0 !important; margin: 0 !important; box-sizing: border-box !important; }
+        textarea.input-judul { width: 100% !important; height: 90px !important; border: none !important; resize: none !important; font-family: "Times New Roman", Times, serif; !important; font-size: 10pt !important; background: transparent !important; outline: none !important; overflow: hidden !important; line-height: 1.3 !important; padding: 0 0 35px 0 !important; margin: 0 !important; box-sizing: border-box !important; }
         
         .btn-clear-judul { position: absolute; bottom: 10px; right: 10px; background: #e74c3c; color: white; border: none; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.2); z-index: 10; }
         .btn-paste-judul { position: absolute; bottom: 10px; left: 10px; background: #3498db; color: white; border: none; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.2); z-index: 10; }
@@ -45,13 +45,12 @@
         .toolbar { padding: max(10px, env(safe-area-inset-top)) 10px 10px 10px; position: fixed; top: 20px; left: 20px; display: flex; flex-direction: column; gap: 5px; z-index: 9999; }
         button, .btn-link { padding: 12px 20px; cursor: pointer; border: none; border-radius: 8px; color: white; font-weight: bold; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); text-decoration: none; display: inline-flex; align-items: center; font-size: 14px; }
         
-        .btn-print { background: #1e7e34; }
-        .btn-reset { background: #e74c3c; }
+        .btn-print { background: #32CD32; }
+        .btn-reset { background: #FF0000; }
         .btn-lcs { background: #007bff; }
-        .btn-help { background: #fd7e14; }
 
         .action-buttons { text-align: center; margin-top: 15px; display: flex; justify-content: center; gap: 10px; }
-        .btn-action { background: #555; padding: 10px 20px; font-size: 14px; }
+        .btn-action { background: #00008B; padding: px 20px; font-size: 14px; }
 
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 10000; align-items: center; justify-content: center; }
         .modal-box { background: white; padding: 25px; border-radius: 10px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.5); max-width: 300px; width: 95%; }
@@ -163,17 +162,15 @@
 
     <div class="toolbar">
         <button class="btn-print" onclick="cetakPDFCustom()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> PDF
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" style="margin-right:6px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> SIMPAN
         </button>
         <button class="btn-reset" onclick="tampilkanPopup()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg> RESET
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg> ATUR ULANG
         </button>
         <a class="btn-link btn-lcs" href="https://dev.epusluh.id/lcs/list">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line></svg> LCS
-        </a>
-        <a class="btn-link btn-help" href="https://chat.whatsapp.com/Kve6AE9QUZAAIl48ThwHf1?mode=hqctcla">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> HELP
-        </a>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line></svg> EPUSLUH
+       
+               </a>
     </div>
 
     <div id="popup-reset" class="modal-overlay">
@@ -199,17 +196,17 @@
                 <td><input type="text" id="id_periode" class="style-periode" placeholder="Rest Untuk Isi Otomatis" oninput="simpanTeks('id_periode')"></td>
             </tr>
             <tr>
-                <td class="label-id">Nama Penyuluh</td>
+                <td class="label-id">NAMA PENYULUH</td>
                 <td class="titik-id">:</td>
-                <td><input type="text" id="id_nama" class="style-nama" placeholder="Contoh : KANG TRICK, SP., MP" oninput="formatNama(this); simpanTeks('id_nama')"></td>
+                <td><input type="text" id="id_nama" class="style-nama" placeholder="Contoh : ABDUL RAHMAN, SP" oninput="formatNama(this); simpanTeks('id_nama')"></td>
             </tr>
             <tr>
                 <td class="label-id">NIP.</td>
                 <td class="titik-id">:</td>
-                <td><input type="text" id="id_nip" placeholder="Contoh : 19990919 201909 1 009" maxlength="21" oninput="formatNIP(this); simpanTeks('id_nip')"></td>
+                <td><input type="text" id="id_nip" placeholder="Contoh : 199009202020121001" maxlength="21" oninput="formatNIP(this); simpanTeks('id_nip')"></td>
             </tr>
             <tr>
-                <td class="label-id">Wilayah Binaan</td>
+                <td class="label-id">WILAYAH BINAAN/WKPP</td>
                 <td class="titik-id">:</td>
                 <td><input type="text" id="id_wilayah" placeholder="Contoh : Desa ... Kec. ... Kab. ..." oninput="formatAlamat(this); simpanTeks('id_wilayah')"></td>
             </tr>
