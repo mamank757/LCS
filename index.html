@@ -368,46 +368,40 @@
         function cetakPDFCustom() { window.print(); }
 
         inisialisasiTabel();
+           
+           <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
-function kirimWA() {
-    let nomorInput = document.getElementById('nomor').value;
-    const nama = document.getElementById('nama').value;
-    const pesan = document.getElementById('pesan').value;
+<script type="text/javascript">
+   (function(){
+      // Ganti dengan Public Key kamu
+      emailjs.init("8eukUaZ1V2-61NfNE");
+   })();
 
-    // 1. Bersihkan semua karakter non-angka (spasi, strip, tanda plus)
-    let nomorBersih = nomorInput.replace(/\D/g, '');
+   function kirimEmailOtomatis(e) {
+      e.preventDefault();
 
-    // 2. Logika konversi: jika diawali '0', ubah jadi '62'
-    if (nomorBersih.startsWith('0')) {
-        nomorBersih = '62' + nomorBersih.substring(1);
-    }
+      // Mengambil data dari form
+      const dataForm = {
+         user_name: document.getElementById("nama").value,
+         user_email: document.getElementById("email_tujuan").value,
+         message: "Konfirmasi pendaftaran BPP Bola"
+      };
 
-    // 3. Validasi: Pastikan input tidak kosong
-    if (!nomorBersih) {
-        alert("Mohon masukkan nomor WhatsApp tujuan.");
-        return;
-    }
+      // Mengirim email
+      emailjs.send("service_m6dl3jd", "template_de9k4ub", dataForm)
+         .then(function() {
+            alert("Email konfirmasi berhasil dikirim ke pengguna!");
+         }, function(error) {
+            alert("Gagal mengirim email: " + JSON.stringify(error));
+         });
+   }
+</script>
 
-    // 4. Eksekusi buka WhatsApp
-    const url = `https://wa.me/${nomorBersih}?text=Halo, saya ${nama}. Pesan: ${pesan}`;
-    window.open(url, '_blank');
-}
-
-<div style="display: flex; flex-direction: column; gap: 10px; max-width: 300px;">
-    <label>Nomor WhatsApp:</label>
-    <input type="tel" id="nomor" placeholder="Contoh: 08123456789">
-    
-    <label>Nama Anda:</label>
-    <input type="text" id="nama" placeholder="Nama Lengkap">
-    
-    <label>Pesan:</label>
-    <textarea id="pesan" placeholder="Tulis pesan di sini..."></textarea>
-    
-    <button onclick="kirimWA()" style="background-color: #25D366; color: white; border: none; padding: 10px; cursor: pointer;">
-        Kirim ke WhatsApp
-    </button>
-</div>
+<form onsubmit="kirimEmailOtomatis(event)">
+   <input type="text" id="nama" placeholder="Nama Pengguna" required>
+   <input type="email" id="email_tujuan" placeholder="Email Pengguna" required>
+   <button type="submit">Daftar & Kirim Email Otomatis</button>
+</form>
     </script>
 </body>
 </html>
-
