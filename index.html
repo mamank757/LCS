@@ -74,7 +74,7 @@
             .info-section span { display: none; }
             
             table, thead, tbody, th, td, tr { display: block; }
-            thead { display: none; } /* Sembunyikan Header Tabel di HP */
+            thead { display: none; } 
             
             tr { 
                 margin-bottom: 30px; 
@@ -84,86 +84,39 @@
                 background: #fff;
                 box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             }
+            
+            tbody{ counter-reset: nomorKonten; }
+            tr{ counter-increment: nomorKonten; position: relative; }
+            tr::before{
+                content: counter(nomorKonten) ". Konten " counter(nomorKonten, decimal-leading-zero);
+                display:block; font-weight:bold; font-size:15px; margin-bottom:10px; color:#000;
+            }
 
-            /* Atur Tanggal dan Judul Konten */
-            td[data-label="No."] { display: none; } /* Sembunyikan No di HP */
-            
+            td[data-label="No."] { display: none; } 
             td { border: none !important; width: 100% !important; padding: 0 !important; margin-bottom: 10px; display: block; text-align: left !important; }
-            
-            /* Sembunyikan label "JUDUL KONTEN" di HP karena sudah ada placeholder */
             td:before { content: ""; } 
 
-            /* Membuat Baris Eviden (Like, Comen, Share) berjejer ke samping */
             tbody { display: flex; flex-direction: column; }
             
-          /* baris menjadi card */
-tr{
-    margin-bottom:25px;
-    border:2px solid #ddd;
-    border-radius:12px;
-    padding:15px;
-    background:#fff;
-    box-shadow:0 4px 6px rgba(0,0,0,0.05);
-}
+            td[data-label="Like"],
+            td[data-label="Comment"],
+            td[data-label="Share"]{
+                display:inline-grid !important;
+                width:28% !important;
+                margin-right:2%;
+                vertical-align:top;
+            }
 
-/* semua td full width */
-td{
-    border:none !important;
-    width:100% !important;
-    padding:0 !important;
-    margin-bottom:12px;
-    text-align:left !important;
-}
+            td[data-label="Share"]{ margin-right:0; }
 
-/* sembunyikan nomor */
-td[data-label="No."]{
-    display:none;
-}
-
-/* ===== GRID 3 KOLOM EVIDEN ===== */
-td[data-label="Like"],
-td[data-label="Comment"],
-td[data-label="Share"]{
-    display:inline-grid !important;
-    width:28% !important;
-    margin-right:2%;
-    vertical-align:top;
-}
-
-td[data-label="Share"]{
-    margin-right:0;
-}
-
-/* label kecil di atas */
-td[data-label="Like"]::before,
-td[data-label="Comment"]::before,
-td[data-label="Share"]::before{
-    content:attr(data-label);
-    text-align:center;
-    font-size:11px;
-    font-weight:bold;
-    margin-bottom:4px;
-}
-
-/* kotak preview lebih proporsional */
-.preview-box{
-    height:110px;
-    width:100%;
-}
-
-input[type="file"]{
-    width:100%;
-    font-size:12px;
-}
-
-            /* Tambahkan tulisan penunjuk di atas kotak file */
-            td[data-label="Like"]:before, td[data-label="Comment"]:before, td[data-label="Share"]:before {
-                content: attr(data-label);
-                display: block;
-                font-size: 10px;
-                font-weight: bold;
-                text-align: center;
-                margin-bottom: 5px;
+            td[data-label="Like"]::before,
+            td[data-label="Comment"]::before,
+            td[data-label="Share"]::before{
+                content:attr(data-label);
+                text-align:center;
+                font-size:11px;
+                font-weight:bold;
+                margin-bottom:4px;
             }
 
             .preview-box { height: 120px; width: 100%; }
@@ -180,14 +133,13 @@ input[type="file"]{
 
         .footer { margin-top: 30px; padding: 20px; background: white; text-align: center; font-size: 14px; border-radius: 8px; color: #333; }
 
-        /* --- TAMPILAN CETAK (KEMBALI KE TABEL) --- */
+        /* --- TAMPILAN CETAK --- */
         @media print {
             @page { size: A4; margin: 1cm; }
             .controls, .action-area, input[type="file"], .textarea-actions, .visitor-counter-wrapper, .footer { display: none !important; }
             body { background: white; padding: 0; margin: 0; }
             .container { box-shadow: none; border: none; width: 100%; padding: 0; max-width: 100%; }
             
-            /* Sembunyikan border input header dan tanggal tabel */
             input[type="text"], input[type="date"], select { 
                 border: none !important; 
                 background: transparent !important; 
@@ -196,9 +148,11 @@ input[type="file"]{
                 padding-left: 0 !important;
             }
 
-            /* Paksa tampilan Tabel kembali */
             table { display: table !important; table-layout: fixed !important; width: 100% !important; border-collapse: collapse !important; }
-            thead { display: table-header-group !important; }
+            
+            /* INI BAGIAN YANG DIUBAH AGAR HEADER TIDAK MUNCUL DI HALAMAN BERIKUTNYA */
+            thead { display: table-row-group !important; } 
+            
             tbody { display: table-row-group !important; }
             tr { display: table-row !important; border: none !important; margin-bottom: 0; }
             td { 
@@ -322,7 +276,13 @@ input[type="file"]{
     }
 
     function removeRow() {
-        if (count > 1) { tableBody.removeChild(tableBody.lastChild); count--; }
+        if (count > 1) { 
+            const yakin = confirm("Apakah Anda yakin ingin menghapus baris terakhir?");
+            if (yakin) {
+                tableBody.removeChild(tableBody.lastChild); 
+                count--; 
+            }
+        }
     }
 
     function pv(input, id) {
