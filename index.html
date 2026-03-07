@@ -215,8 +215,6 @@ input[type="file"]{
     </style>
 </head>
 <body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <div class="visitor-counter-wrapper">
     <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=a89e5d2c48fde512d9411d388c694afb903a141d'></script>
@@ -340,34 +338,10 @@ input[type="file"]{
         }
     }
 
-   async function cetakLaporan(){
-
-const { jsPDF } = window.jspdf;
-
-const area = document.querySelector(".container");
-
-const canvas = await html2canvas(area,{
-scale:2,
-useCORS:true
-});
-
-const imgData = canvas.toDataURL("image/jpeg",1.0);
-
-const pdf = new jsPDF("p","mm","a4");
-
-const pdfWidth = 210;
-const pdfHeight = 297;
-
-const imgWidth = pdfWidth;
-const imgHeight = canvas.height * imgWidth / canvas.width;
-
-pdf.addImage(imgData,"JPEG",0,0,imgWidth,imgHeight);
-
-const nama = document.getElementById("id_nama").value || "Laporan";
-const periode = document.getElementById("id_periode").value;
-
-pdf.save(`LCS_${periode}_${nama}.pdf`);
-
+  function cetakLaporan() {
+    const nama = document.getElementById('id_nama').value || "Laporan";
+    document.title = `LCS_${getTglHariIni()}_${nama}`;
+    window.print();
 }
 
     window.onload = () => { 
