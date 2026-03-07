@@ -93,12 +93,25 @@
                 box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             }
             
-            tbody{ counter-reset: nomorKonten; }
-            tr{ counter-increment: nomorKonten; position: relative; }
-            tr::before{
-                content: counter(nomorKonten) ". Konten " counter(nomorKonten, decimal-leading-zero);
-                display:block; font-weight:bold; font-size:15px; margin-bottom:10px; color:#000;
-            }
+            tbody { 
+  counter-reset: nomorKonten; 
+}
+
+tr { 
+  counter-increment: nomorKonten; 
+  position: relative; 
+}
+
+tr::before { 
+  /* Menggunakan '#' sebagai string dan format decimal-leading-zero */
+  content: "#" counter(nomorKonten, decimal-leading-zero); 
+  
+  display: block; 
+  font-weight: bold; 
+  font-size: 15px; 
+  margin-bottom: 10px; 
+  color: #000; 
+}
 
             td[data-label="No."] { display: none; } 
             td { border: none !important; width: 100% !important; padding: 0 !important; margin-bottom: 10px; display: block; text-align: left !important; }
@@ -321,6 +334,7 @@
 </script>
 </body>
 </html>
+
 
 
 
