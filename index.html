@@ -102,9 +102,18 @@ tr {
   position: relative; 
 }
 
+tbody { 
+  counter-reset: nomorKonten; 
+}
+
+tr { 
+  counter-increment: nomorKonten; 
+  position: relative; 
+}
+
 tr::before { 
-  /* Menggunakan '#' sebagai string dan format decimal-leading-zero */
-  content: "#" counter(nomorKonten, decimal-leading-zero); 
+  /* Bagian yang diubah ada di bawah ini */
+  content: "Konten #" counter(nomorKonten, decimal-leading-zero); 
   
   display: block; 
   font-weight: bold; 
@@ -334,6 +343,7 @@ tr::before {
 </script>
 </body>
 </html>
+
 
 
 
