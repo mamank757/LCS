@@ -104,6 +104,12 @@
         /* --- TAMPILAN CETAK (PRINT) --- */
         @media print {
             @page { size: A4; margin: 1.5cm; }
+            thead th{
+        background: #00a651 !important; /* hijau */
+        color: #000 !important; /* font hitam */
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
             .controls, .action-area, input[type="file"], .textarea-actions, .visitor-counter-wrapper, .footer { display: none !important; }
             body { background: white; padding: 0; margin: 0; }
             .container { box-shadow: none; border: none; width: 100%; padding: 0; max-width: 100%; }
@@ -274,3 +280,4 @@
 </script>
 </body>
 </html>
+
