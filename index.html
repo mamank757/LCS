@@ -197,6 +197,13 @@
         display: none !important;
     }
 }
+            @media print {
+    * {
+        color: #000 !important;
+        text-decoration: none !important;
+        -webkit-text-fill-color: #000 !important;
+    }
+}
             @page { size: A4; margin: 1.5cm; }
             thead th { background: #00a651 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             body { background: white; padding: 0; margin: 0; }
