@@ -5,13 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#333" />
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-web-app-capable" content="yes">
+    <meta name="apple-web-app-status-bar-style" content="black-translucent">
     <meta name="format-detection" content="telephone=no, date=no, email=no, address=no">
 
     <title>LCS, Tanggal, Nama Penyuluh</title>
 
     <style>
+        /* CSS UNTUK TOMBOL HOME MELAYANG */
+        .floating-home {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #00a651; /* Warna Hijau Pertanian */
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 9999;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            font-size: 30px;
+        }
+
+        .floating-home:hover {
+            transform: scale(1.1);
+            background-color: #008542;
+        }
+
+        /* Sembunyikan tombol saat cetak/print */
+        @media print {
+            .floating-home {
+                display: none !important;
+            }
+        }
+
+        /* --- KODE CSS LAMA ANDA DI BAWAH INI --- */
         .col-eviden { text-align: center; }
         .col-konten textarea { font-size: 11px; }
         .col-eviden input[type="file"] { display: block; margin: 0 auto; }
@@ -192,18 +225,12 @@
 
         @media print {
             .judul-select, .no-print, .visitor-counter-wrapper, .controls, .action-area, .footer { display: none !important; }
-            @media print {
-    input[type="file"] {
-        display: none !important;
-    }
-}
-            @media print {
-    * {
-        color: #000 !important;
-        text-decoration: none !important;
-        -webkit-text-fill-color: #000 !important;
-    }
-}
+            input[type="file"] { display: none !important; }
+            * {
+                color: #000 !important;
+                text-decoration: none !important;
+                -webkit-text-fill-color: #000 !important;
+            }
             @page { size: A4; margin: 1.5cm; }
             thead th { background: #00a651 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             body { background: white; padding: 0; margin: 0; }
@@ -222,6 +249,8 @@
 </head>
 
 <body>
+
+<a href="https://mamank757.github.io/PPL" class="floating-home" title="Kembali ke Home">🏠</a>
 
 <div class="visitor-counter-wrapper">
     <a href='http://www.freevisitorcounters.com'>Counter</a>
