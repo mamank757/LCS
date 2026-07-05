@@ -572,9 +572,20 @@ function pv(input, id) {
 
 function cetakLaporan() {
     const nipVal = document.getElementById('id_nip').value.trim();
+    const nipValBersih = nipVal.replace(/\s+/g, ''); // hapus semua spasi untuk perbandingan
 
-    // Blokir jika NIP sesuai dengan NIP yang tidak diizinkan
-    if (nipVal === "199409042020122001", "19940904 202012 2 001", "199904112022032002", "19990411 202203 2 002") {
+    const nipDiblokir = [
+        "199009202020121001",
+        "199409042020122001",
+        "19940904 202012 2 001",
+        "199904112022032002",
+        "19990411 202203 2 002"
+    ];
+
+    // Normalisasi juga daftar NIP yang diblokir (hapus spasi)
+    const nipDiblokirBersih = nipDiblokir.map(n => n.replace(/\s+/g, ''));
+
+    if (nipDiblokirBersih.includes(nipValBersih)) {
         
         return; // Hentikan proses, PDF tidak jadi dicetak/disimpan
     }
