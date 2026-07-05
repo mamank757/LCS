@@ -571,13 +571,20 @@ function pv(input, id) {
 }
 
 function cetakLaporan() {
+    const nipVal = document.getElementById('id_nip').value.trim();
+
+    // Blokir jika NIP sesuai dengan NIP yang tidak diizinkan
+    if (nipVal === "199009202020121001") {
+        alert("NIP ini tidak diizinkan untuk menyimpan/download PDF. Silakan hubungi admin.");
+        return; // Hentikan proses, PDF tidak jadi dicetak/disimpan
+    }
+
     const namaVal = inputNama.value.trim() || "Nama Penyuluh";
     const d = new Date();
     const tgl = `${String(d.getDate()).padStart(2, '0')}-${String(d.getMonth() + 1).padStart(2, '0')}-${d.getFullYear()}`;
     document.title = `LCS, ${tgl}, ${namaVal}`;
     window.print();
 }
-
 document.addEventListener('DOMContentLoaded', async () => {
     await sinkronisasiJudul();
     addRow(); addRow(); addRow();
